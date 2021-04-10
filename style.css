@@ -7,7 +7,7 @@ h1 {
 body {
     margin: 0;
     height: 100vh;
-    background-image:url("https://source.unsplash.com/featured/?background,red/1600x900");
+    background-image:url("https://source.unsplash.com/featured/?background,red/1500x900");
      /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
