@@ -70,11 +70,11 @@ header ul li a:hover
   height: 100vh; */
 /* } */
 
-p {
+/* p {
   font-size: 1.5rem;
   color: grey;
   font-weight: bolder;
-}
+} */
 
 #search-container {
   display: flex;

@@ -50,14 +50,52 @@ async function fetchGeniusIDData() {
 }
 
 // add clicked item to local storage
-const addToFavoritesLocalStorage = () => {
-  let cardData = {
+// const addToFavoritesLocalStorage = () => {
 
-  }
+//   // let favCardData = {
+//   //   image = "",
+//   //   title = "",
+//   //   artist = "",
+//   //   releaseDate = "",
+//   // }
+//   function timeout(){ 
+//     const addToFavorites = $(this)
+//     console.log(addToFavorites)
+// }
 
-  let serializedData = JSON.Stringify(cardData)
-  localStorage.setItem("key",serializedData)
-}
+// setTimeout(timeout, 5000)
+
+ 
+//   const artistValue = $(".getArtist").text()
+//   // console.log (artistValue)
+//   let artistString = JSON.stringify(artistValue)
+  
+//   // localStorage.setItem("artist",serializedData)
+// }
+const addToFavoritesLocalStorage = (element) => {
+  // const favoritesData = getLocalStorageData()
+   
+  // const favCard = JSON.parse(localStorage.getItem("card"));
+  // const target = $(event.target).parentsUntil(".searchCardContainer").
+  // const target = $(event.target).closest(".card")
+  // const image = $(.)
+  // const title = 
+  const target = element.closest(".card")
+  console.log(target)
+  const image = target.querySelector(".card-image")
+  console.log(image)
+  const imageUrl = image.getAttribute("style")
+  console.log(imageUrl)
+  // if (target.is("button")) {
+  //   const key = target.attr("id");
+  //   const value = target.parent().find("Favorite").val();
+  //   const newObject = {
+  //     ...favCard,
+  //     [key]: value,
+  //   };
+  //   localStorage.setItem("favCard", JSON.stringify(newObject));
+  // }
+};
 
 const renderFavoritesCards = () => {
   for (let i=0; i < localStorage.length; i++) {
@@ -68,10 +106,12 @@ const renderFavoritesCards = () => {
 
 
 const getLocalStorageData = () => {
-  const localStorageData = JSON.parse(localStorage.getItem("key"));
+  const localStorageData = JSON.parse(localStorage.getItem("artist"));
   if (localStorageData === null) {
     return [];
-  } else return localStorageData;
+  } else
+  
+  return localStorageData;
 };
 
 const onDelete = (eachGenre) => {
@@ -107,14 +147,14 @@ const renderMainCard = (geniusData) => {
     <div class="card">
       <div class="card-image" style="background-image: url('${geniusData.hits[i].result.song_art_image_url}');"><button class="delete is-large"></button></div>
       <div class="card-text content is-normal">
-        <h1>${geniusData.hits[i].result.full_title}</h1>
-        <h3 class="subtitle">Artist: ${geniusData.hits[i].result.primary_artist.name}</h3>
-        <h3 class="subtitle">Release Date: WIP</h3>
+        <h1 id="songTitle">${geniusData.hits[i].result.title}</h1>
+        <h3 id="getArtist" class="subtitle">Artist: ${geniusData.hits[i].result.primary_artist.name}</h3>
+        <h3 id="getReleaseDate" class="subtitle">Release Date: WIP</h3>
       </div>
         <div class="card-footer">
           <div class="card-footer-item">
             <span>
-              Add to <a id="addFavorite">Favorites</a>
+              Add to <a id="addFavorite" class="favorites" onclick="addToFavoritesLocalStorage(this)">Favorites</a>
             </span>
           </div>
           <div class="card-footer-item">
@@ -125,8 +165,9 @@ const renderMainCard = (geniusData) => {
         </div>
     </div>
   </div>`;
+  // $(".favorites").off("click").on("click",addToFavoritesLocalStorage)
     container.append(card);
-    console.log(geniusData.hits[i].result.full_title);
+    
   }
 };
 
@@ -137,7 +178,7 @@ const onSubmit = async (event) => {
   console.log(geniusDataObject);
   renderMainCard(geniusDataObject);
   $(".delete").on("click", onDelete);
-  $("#addFavorite").on("click",addToFavoritesLocalStorage)
+  
   
 };
 
